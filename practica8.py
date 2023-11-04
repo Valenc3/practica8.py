@@ -176,7 +176,7 @@ def promedioD(nombre:str)->dict:
 
 
 #EJERCICIO 22
-p = pila()
+p ={}
 def visitar_sitio(historial:dict,usuario:str,pagina:str):
     try:
         nuevo = historial[usuario]
@@ -190,20 +190,13 @@ def visitar_sitio(historial:dict,usuario:str,pagina:str):
 
 def navegar_atras(historial:dict, usuario:str):
     nuevo = historial[usuario]
-    p.put(nuevo.get())
+    visitar_sitio(p,usuario,nuevo.get())
     historial[usuario] = nuevo
 
 def navegar_adelante(historial:dict, usuario:str):
-    nuevo = historial[usuario]
-    nuevo.put(p.get())
-    historial[usuario] = nuevo
-historiales = {}
-visitar_sitio(historiales, "Usuario1", "google.com")
-visitar_sitio(historiales, "Usuario1", "facebook.com")
-navegar_atras(historiales, "Usuario1")
-visitar_sitio(historiales, "Usuario2", "youtube.com")
-navegar_adelante(historiales, "Usuario1")
-print(historiales["Usuario1"].queue)
+    nuevo = p[usuario]
+    pagina = nuevo.get()
+    visitar_sitio(historial,usuario,pagina) 
 
 #23 
 def agregar_producto(inventario:dict,nombre:str,precio:float,cantidad:int):
@@ -227,6 +220,17 @@ def calcular_valor_inventario(inventario:dict) -> float:
         n += info["cantidad"]*info["precio"] 
     return n
 
+#Numero 3 simulacro
+
+def traducciones_iguales(ing:dict,ale:dict)->int:
+    ingles = ing.values()
+    aleman = ale.values()
+    n = 0
+    for valoresI in ingles:
+        for valoresA in aleman:
+            if valoresI == valoresA:
+                n += 1
+    return n
 
 
 
